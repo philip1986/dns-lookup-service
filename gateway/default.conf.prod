@@ -1,0 +1,17 @@
+upstream backend {
+  server backend:8080;
+}
+
+server {
+  listen 80;
+
+  location / {
+    root   /app/dist;
+    index  index.html index.htm;
+    try_files $uri $uri/ /index.html;
+  }
+
+  location /api {
+    proxy_pass http://backend;
+  }
+}
