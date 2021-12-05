@@ -2,7 +2,7 @@ package test_dns_resolver
 
 import (
 	"dns-lookup-service/dns_resolver"
-	mock_dns_resolver "dns-lookup-service/dns_resolver/test/mocks"
+	"dns-lookup-service/dns_resolver/test/mocks"
 	"fmt"
 	"github.com/go-playground/assert/v2"
 	"github.com/golang/mock/gomock"
@@ -91,6 +91,18 @@ func (s *DnsResolverSuite) TestItForMultipleRecordsFound() {
 		RecordType: "TXT",
 		Value: "adobe-idp-site-verification=321c026a-3a8c-4206-a1fa-391a59585c54",
 	})
+}
+
+func (s *DnsResolverSuite) TestItForDefaultNServerSetting() {
+	mockedDnsClientWrapper.
+		EXPECT().
+		Lookup(gomock.Any(), gomock.Any()).
+		Return(time.Duration(1), "raw response", []string{"tesla.com.\t300\tIN\tA\t199.66.11.62"}, nil)
+
+	r, _ := dnsResolver.Resolve("tesla.com", dns_resolver.TypeA, "default")
+
+	assert.Equal(s.T(), r.NServer != "default", true)
+
 }
 
 func (s *DnsResolverSuite) TestItForNoRecordFound() {

@@ -7,7 +7,7 @@ require (
 	github.com/go-playground/assert/v2 v2.0.1
 	github.com/golang/mock v1.6.0
 	github.com/miekg/dns v1.1.43
-	github.com/stretchr/testify v1.4.0
+	github.com/stretchr/testify v1.7.0
 )
 
 require (
@@ -28,4 +28,5 @@ require (
 	golang.org/x/net v0.0.0-20210405180319-a5a99cb37ef4 // indirect
 	golang.org/x/sys v0.0.0-20210510120138-977fb7262007 // indirect
 	gopkg.in/yaml.v2 v2.2.8 // indirect
+	gopkg.in/yaml.v3 v3.0.0-20200313102051-9f266ea9e77c // indirect
 )

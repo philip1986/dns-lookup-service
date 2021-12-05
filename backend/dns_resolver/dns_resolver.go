@@ -22,14 +22,23 @@ func NewDnsResolver() *DnsResolver {
 	}
 }
 
-func (d *DnsResolver) Resolve(domain string, recordType RecordType, nServer string) (*LookupResult, error) {
-	address := net.JoinHostPort(nServer, defaultDnsPort)
+func (d *DnsResolver) Resolve(domain string, recordType RecordType, nServerSetting string) (*LookupResult, error) {
+	nameServer := d.handleDefaultNServerSetting(nServerSetting)
+	address := net.JoinHostPort(nameServer, defaultDnsPort)
 	query := d.createQueryMsg(domain, recordType)
 	roundTripTime, raw, recordString, err := d.DnsClient.Lookup(query, address)
 
 	if err != nil { return nil, err }
 
-	return d.transformToLookupResult(nServer, raw, recordString, roundTripTime), nil
+	return d.transformToLookupResult(nameServer, raw, recordString, roundTripTime), nil
+}
+
+func (d *DnsResolver) handleDefaultNServerSetting(nServer string) string {
+	if nServer != "default" {
+		return nServer
+	}
+	config, _ := dns.ClientConfigFromFile("/etc/resolv.conf")
+	return config.Servers[0]
 }
 
 func (d *DnsResolver) transformToLookupResult(nServer string, raw string, recordStrings []string, rtt time.Duration) *LookupResult {

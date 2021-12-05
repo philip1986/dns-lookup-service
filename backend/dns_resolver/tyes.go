@@ -16,7 +16,22 @@ const (
 	TypeAAAA       uint16 = 28
 	TypeSRV        uint16 = 33
 	TypeANY   	   uint16 = 255
+	TypeCAA        uint16 = 257
 )
+
+var RecordTypeNameToRecordType = map[string]uint16{
+	"A":     TypeA,
+	"AAAA":  TypeAAAA,
+	"ANY":   TypeANY,
+	"CAA":   TypeCAA,
+	"CNAME": TypeCNAME,
+	"MX":    TypeMX,
+	"NS":    TypeNS,
+	"PTR":   TypePTR,
+	"SOA":   TypeSOA,
+	"SRV":   TypeSRV,
+	"TXT":   TypeTXT,
+}
 
 type LookupResult struct {
 	NServer 		string
