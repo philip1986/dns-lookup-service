@@ -13,11 +13,6 @@ func main() {
 
     router := gin.Default()
 
-    router.Static("/ui", "./frontend/dist")
-    router.GET("/", func(context *gin.Context) {
-    	context.Redirect(301, "/ui")
-	})
-
     v1 := router.Group("api/v1")
 	v1.GET("/lookup/domain/:domainName/recordtype/:recordType", func(context *gin.Context) {
 		domainName := context.Param("domainName")
@@ -33,13 +28,12 @@ func main() {
 				context.Error(err)
 				return
 			}
-
 			lookupResults[i] = res
 		}
 
 		context.JSON(http.StatusOK, lookupResults)
 	})
 
-    router.Run("localhost:8080")
+    router.Run("0.0.0.0:8080")
 }
 

@@ -2,7 +2,6 @@
   "name": "frontend",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/ui/",
   "dependencies": {
     "@emotion/react": "^11.7.0",
     "@emotion/styled": "^11.6.0",
@@ -19,6 +18,7 @@
     "react-data-table-component": "^7.4.5",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
+    "styled-components": "^5.3.3",
     "typescript": "^4.5.2",
     "web-vitals": "^1.1.2"
   },
@@ -33,6 +33,11 @@
       "react-app",
       "react-app/jest"
     ]
+  },
+  "disableHostCheck": true,
+  "watchOptions": {
+    "aggregateTimeout": 500,
+    "poll": 1000
   },
   "browserslist": {
     "production": [

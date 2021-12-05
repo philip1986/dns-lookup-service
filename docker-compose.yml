@@ -1,0 +1,32 @@
+version: '3.9'
+services:
+    backend:
+        container_name: backend
+        build:
+            context: ./backend
+            dockerfile: Dockerfile
+        volumes:
+            - ./backend:/go/src/app
+        ports:
+            - "8080:8080"
+    frontend:
+        container_name: frontend
+        build:
+            context: ./frontend
+            dockerfile: Dockerfile
+        volumes:
+            - './frontend/src:/app/src'
+            - '/app/node_modules'
+        ports:
+            - "3000:3000"
+        environment:
+          - CHOKIDAR_USEPOLLING=true
+          - NODE_ENV=development
+    nginx:
+        container_name: nginx_gateway
+        restart: always
+        build:
+            dockerfile: Dockerfile
+            context: ./gateway
+        ports:
+            - "5000:80"
