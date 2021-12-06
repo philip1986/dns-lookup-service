@@ -1,9 +1,4 @@
-import {
-  FormControl,
-  FormControlLabel,
-  Radio,
-  RadioGroup,
-} from "@mui/material";
+import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
 import { getListOfSupportedRecords } from "../api";
 import React, { ChangeEvent } from "react";
 
@@ -20,23 +15,22 @@ export default function RecordTypeRadioGroup(props: RecordTypeRadioGroupProps) {
   }
 
   return (
-    <FormControl component="fieldset">
-      <RadioGroup
-        row
-        name="row-radio-buttons-group"
-        onChange={updateRecordType}
-        value={recordType}
-      >
-        {getListOfSupportedRecords().map((recordType) => (
-          <FormControlLabel
-            key={`key-${recordType}`}
-            value={recordType}
-            control={<Radio />}
-            label={recordType}
-            labelPlacement={"bottom"}
-          />
-        ))}
-      </RadioGroup>
-    </FormControl>
+    <RadioGroup
+      style={{ marginTop: "30px" }}
+      row
+      name="row-radio-buttons-group"
+      onChange={updateRecordType}
+      value={recordType}
+    >
+      {getListOfSupportedRecords().map((recordType) => (
+        <FormControlLabel
+          key={`key-${recordType}`}
+          value={recordType}
+          control={<Radio />}
+          label={recordType}
+          labelPlacement={"bottom"}
+        />
+      ))}
+    </RadioGroup>
   );
 }
