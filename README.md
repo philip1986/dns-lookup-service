@@ -1,9 +1,11 @@
 ## dns-lookup-service
 
+![dns-lookup-services-screenshot](./Screenshot.png)
+
 ### Dev Setup
 
 ```
-git clone git@github.com:philip1986/dns-lookup-service.git
+git clone https://github.com/philip1986/dns-lookup-service.git
 cd dns-lookup-service
 docker-compose up --build
 ```
