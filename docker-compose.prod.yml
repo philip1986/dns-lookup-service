@@ -17,8 +17,6 @@ services:
     volumes:
       - './frontend/dist:/app/dist'
       - '/app/node_modules'
-    ports:
-      - "3000:3000"
     environment:
       - CHOKIDAR_USEPOLLING=true
       - NODE_ENV=development
@@ -31,4 +29,4 @@ services:
     volumes:
       - './frontend/dist:/app/dist'
     ports:
-      - "5000:80"
+      - "5001:80"
