@@ -27,26 +27,29 @@ const columns: TableColumn<DataRow>[] = [
     name: "NameServer",
     selector: (row) => row.nameServer,
     sortable: true,
+    maxWidth: "120px",
   },
   {
     name: "Domain",
     selector: (row) => row.domain,
     sortable: true,
+    maxWidth: "180px",
   },
   {
     name: "Round Trip Time",
     selector: (row) => `${covertNanoIntoMilliSec(row.roundTripTime)} ms`,
-    sortable: true,
+    maxWidth: "120px",
   },
   {
     name: "TTL",
     selector: (row) => `${row.ttl} sec`,
-    sortable: true,
+    maxWidth: "120px",
   },
   {
     name: "RecordType",
     selector: (row) => row.recordType,
     sortable: true,
+    maxWidth: "120px",
   },
   {
     name: "value",
